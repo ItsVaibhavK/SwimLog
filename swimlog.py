@@ -5,7 +5,7 @@ import random, sys, time
 
 # initiate figlet
 figlet = Figlet()
-# connect to db
+# connect to database
 db = SQL("sqlite:///SwimLog.db")
 
 
@@ -39,9 +39,13 @@ def main():
                 # Add new data to database using custom function
                 db_update(distance, pool, duration)
             elif first_choice == 2:
-                existing_swim_data()
+                # If there is no existing data, user cannot access this option
+                if db_check():
+                    existing_swim_data()
             elif first_choice == 3:
-                modify_data()
+                # If there is no existing data, user cannot access this option
+                if db_check():
+                    modify_data()
             elif first_choice == 4:
                 sys.exit()
             else:
@@ -121,6 +125,16 @@ def existing_swim_data():
 
         except ValueError:
             print("\nEnter a valid option number.\n")
+
+
+# Check if data exists or if the database is empty
+def db_check():
+    data = db.execute("SELECT * FROM swim_data")
+    if not data:
+        print("\nThere is no existing data. Please add data to the database first.")
+        return False
+    else:
+        return True
 
 
 # Print out existing data as a table using tabulate module

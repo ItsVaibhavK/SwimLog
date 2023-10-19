@@ -108,6 +108,10 @@ If option "4. Go back to main menu" is selected, `break` is used to end the **Me
 
 4. Distance covered in a session, pool length, and the duration of a session are the current parameters that are the focus of Swim Log<br>since these are the main parameters I care about for my personal data. I would, however, like to also consider adding parameters<br>such as number of laps and swim pace in a future version.
 
+5. The program currently only stores/calculates distance data under the metric system. An idea for a future version of Swim Log could be<br>to provide the option of selecting what system of measurement the user would like to implement.
+
+6. Currently, the date/timestamp data is not used in any way apart from a form of record-keeping.<br>Utilizing the date/timestamp data to see milestones like start date, year, etc. can also be considered.
+
 ## CREDITS, CONCLUSION:
 I cannot express my gratitude and admiration of the staff and team at CS50 enough for sharing their knowledge with students like me,<br>and for their time, effort and dedication behind the plethora of courses offered by Harvard's CS50 on [edX.](https://www.edx.org/) I went from not knowing anything about programming at all<br>to writing my own programs and web apps in these last few months.<br>Thank you from the bottom of my heart for instilling in me the love of all things programming!
 

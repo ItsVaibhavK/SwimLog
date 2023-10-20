@@ -115,5 +115,5 @@ If option "4. Go back to main menu" is selected, `break` is used to end the **Me
 ## CREDITS, CONCLUSION:
 I cannot express my gratitude and admiration of the staff and team at CS50 enough for sharing their knowledge with students like me,<br>and for their time, effort and dedication behind the plethora of courses offered by Harvard's CS50 on [edX.](https://www.edx.org/) I went from not knowing anything about programming at all<br>to writing my own programs and web apps in these last few months.<br>Thank you from the bottom of my heart for instilling in me the love of all things programming!
 
-_To quote Professor Malan:_
+_To quote [Professor Malan](https://cs.harvard.edu/malan/):_
 > This was CS50!

@@ -111,13 +111,27 @@ def existing_swim_data():
             if second_choice == 1:
                 db_read()
             elif second_choice == 2:
-                total_distance()
+                total_distance_list = db.execute(
+                    "SELECT SUM(distance) AS n FROM swim_data"
+                )
+                distance = total_distance_list[0]["n"]
+                print(total_distance(distance))
             elif second_choice == 3:
-                total_time()
+                total_time_list = db.execute("SELECT SUM(duration) AS n FROM swim_data")
+                duration = total_time_list[0]["n"]
+                print(total_time(duration))
             elif second_choice == 4:
-                average_distance()
+                distance_list = db.execute("SELECT SUM(distance) AS m FROM swim_data")
+                sessions_list = db.execute("SELECT COUNT(*) AS n FROM swim_data")
+                distance = distance_list[0]["m"]
+                sessions = sessions_list[0]["n"]
+                print(average_distance(distance, sessions))
             elif second_choice == 5:
-                average_time()
+                total_time_list = db.execute("SELECT SUM(duration) AS m FROM swim_data")
+                sessions_list = db.execute("SELECT COUNT(*) AS n FROM swim_data")
+                duration = total_time_list[0]["m"]
+                sessions = sessions_list[0]["n"]
+                print(average_time(duration, sessions))
             elif second_choice == 6:
                 break
             else:
@@ -145,63 +159,49 @@ def db_read():
 
 
 # Display total distance swam
-def total_distance():
-    total_distance_list = db.execute("SELECT SUM(distance) AS n FROM swim_data")
-    total_distance = total_distance_list[0]["n"]
+def total_distance(distance):
     # Total distance in meters if < 1 kilometer
-    if total_distance < 1000:
-        print(f"\nTotal distance swam: {total_distance} meters")
+    if distance < 1000:
+        return f"\nTotal distance swam: {distance} meters"
     # Total distance in kilometers if >= 1 kilometer
     else:
-        print(f"\nTotal distance swam: {total_distance/1000} kilometers")
+        return f"\nTotal distance swam: {distance/1000} kilometers"
 
 
 # Display total time spent swimming
-def total_time():
-    total_time_list = db.execute("SELECT SUM(duration) AS n FROM swim_data")
-    total_time = total_time_list[0]["n"]
+def total_time(duration):
     # Total time in minutes if < 1 hour
-    if total_time < 60:
-        print(f"\nTotal time spent swimming: {total_time} minutes")
+    if duration < 60:
+        return f"\nTotal time spent swimming: {duration} minutes"
     # Total time in hours, minutes if >= 1 hour
     else:
-        hours = total_time // 60
-        minutes = total_time % 60
-        print(f"\nTotal time spent swimming: {hours} hour(s), {minutes} minute(s)")
+        hours = duration // 60
+        minutes = duration % 60
+        return f"\nTotal time spent swimming: {hours} hour(s), {minutes} minute(s)"
 
 
 # Display average distance swam per session
-def average_distance():
-    distance_list = db.execute("SELECT SUM(distance) AS m FROM swim_data")
-    distance = distance_list[0]["m"]
-    sessions_list = db.execute("SELECT COUNT(*) AS n FROM swim_data")
-    sessions = sessions_list[0]["n"]
+def average_distance(distance, sessions):
     average = round(distance / sessions, 2)
     # Average distance in meters if < 1 kilometer
     if average < 1000:
-        print(f"\nAverage distance swam per session: {average} meters")
+        return f"\nAverage distance swam per session: {average} meters"
     # Average distance in kilometers if >= 1 kilometer
     else:
-        print(f"\nAverage distance swam per session: {average} kilometers")
+        return f"\nAverage distance swam per session: {average} kilometers"
 
 
 # Display average time spent swimming per session
-def average_time():
-    total_time_list = db.execute("SELECT SUM(duration) AS m FROM swim_data")
-    duration = total_time_list[0]["m"]
-    sessions_list = db.execute("SELECT COUNT(*) AS n FROM swim_data")
-    sessions = sessions_list[0]["n"]
+def average_time(duration, sessions):
     average = round(duration / sessions)
     # Average time in minutes if < 1 hour
     if average < 60:
-        print(f"\nAverage time spent swimming per session: {average} minutes")
+        return f"\nAverage time spent swimming per session: {average} minutes"
     # Average time in hours, minutes if >= 1 hour
     else:
         hours = average // 60
         minutes = average % 60
-        print(
-            f"\nAverage time spent swimming per session: {hours} hour(s), {minutes} minute(s)"
-        )
+        return f"\nAverage time spent swimming per session: {hours} hour(s), {minutes} minute(s)"
 
 
 # Modify existing data

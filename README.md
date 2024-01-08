@@ -1,5 +1,5 @@
 # SWIM LOG
-
+[Demo video on YouTube](https://youtu.be/HS2XvBuTUpQ)
 ## IDEA BEHIND SWIM LOG
 As a person who swims fairly regularly for exercise, I wanted to track my basic swimming data, like:
 - Distance swam in a session
